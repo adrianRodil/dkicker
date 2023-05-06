@@ -32,10 +32,10 @@ client.on("voiceStateUpdate", (_, newState) => {
 
   const kickInSeconds = Math.floor(Math.random() * 15) + 5;
   console.log(`Kicking user in ${kickInSeconds} seconds`);
-  setTimeout(() =>{
-    console.log("Kicking user")
-    newState.member.voice.disconnect(), kickInSeconds * 1000);
-  };
+  setTimeout(() => {
+    console.log("Kicking user");
+    newState.member.voice.disconnect(), kickInSeconds * 1000;
+  });
 });
 
 client.on("interactionCreate", async (interaction) => {
