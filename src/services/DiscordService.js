@@ -25,12 +25,17 @@ client.on("voiceStateUpdate", (_, newState) => {
     return;
   }
   const user = newState.member;
-  if(!usersToKickIds.includes(user.user.id)){
+  if (!usersToKickIds.includes(user.user.id)) {
     console.log("user not in kick list skipping");
     return;
   }
-  console.log("Kicking user");
-  newState.member.voice.disconnect();
+
+  const kickInSeconds = Math.floor(Math.random() * 15) + 5;
+  console.log(`Kicking user in ${kickInSeconds} seconds`);
+  setTimeout(() =>{
+    console.log("Kicking user")
+    newState.member.voice.disconnect(), kickInSeconds * 1000);
+  };
 });
 
 client.on("interactionCreate", async (interaction) => {
