@@ -4,8 +4,6 @@ const {
   REST,
   Routes,
   SlashCommandBuilder,
-  SlashCommandUserOption,
-  SlashCommandIntegerOption,
 } = require("discord.js");
 const TOKEN = process.env.appToken;
 const CLIENT_ID = process.env.appId;
@@ -27,7 +25,7 @@ client.on("voiceStateUpdate", (_, newState) => {
   }
   const user = newState.member;
   const kickUserConfig = usersToKick.find(
-    (userConfig) => userConfig.id === user.user.id
+    (userConfig) => userConfig.userId === user.user.id
   );
   if (!kickUserConfig) {
     console.log("user not in kick list skipping");
