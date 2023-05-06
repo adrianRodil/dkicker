@@ -24,6 +24,12 @@ client.on("voiceStateUpdate", (_, newState) => {
     console.log("User is not in a channel. Skipping action");
     return;
   }
+  const user = newState.member;
+  if(!usersToKickIds.includes(user.user.id)){
+    console.log("user not in kick list skipping");
+    return;
+  }
+  console.log("Kicking user");
   newState.member.voice.disconnect();
 });
 
@@ -33,7 +39,6 @@ client.on("interactionCreate", async (interaction) => {
   if (interaction.commandName === "dkick") {
     const data = interaction.options.data;
     console.log("DKICK TRRIGGERED");
-    console.log(data);
     const userId = data[0].user.id;
     usersToKickIds.push(userId);
     interaction.reply({
